@@ -37,18 +37,20 @@ table.ticket-stats tbody th, table.ticket-stats tbody tr {padding-left: 20px}
 .errorlist {padding: 0;}
 .has-error .input-group input, .has-error .input-group select, .has-error .input-group textarea {border-color: #b94a48}
 
-#helpdesk-nav-collapse #searchform {
-    padding-top: 0;
-}
+#helpdesk-nav-collapse #searchform {padding-top: 0;}
 #ticket-description {background-color: #FCF8E3;}
 .followup.well {background-color: #f4f5ff;}
 /*
 Add your custom styles here
 */
 #footer {
-    border-top: 2px solid #AAAAAA;
+    border-top: 2px solid #aaa;
     margin-top: 20px;
     padding: 10px 0;
 }
 #helpdesk-body {padding-top: 100px;}
 img.brand {padding-right: 30px;}
+
+@media (min-width: 1400px) {
+  #searchform .input {width: 240px}
+}
