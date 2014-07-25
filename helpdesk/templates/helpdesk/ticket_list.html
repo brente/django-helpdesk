@@ -31,12 +31,11 @@ $(document).ready(function() {
     });
 });
 </script>
-{% endblock %}
-{% block h1_title %}Tickets
-    {% if from_saved_query %} [{{ saved_query.title }}]{% endif %}{% endblock %}
-{% block helpdesk_body %}
+{% endblock helpdesk_head %}
 
-{% load in_list %}
+{% block helpdesk_pagetitle %}<h1>Tickets {% if from_saved_query %} [{{ saved_query.title }}]{% endif %}</h1>{% endblock helpdesk_pagetitle %}
+
+{% block helpdesk_body %}{% load in_list %}
 
 <div id="searchtabs" class="row">
     {% comment %}<ul>
@@ -259,5 +258,5 @@ $(document).ready(function() {
 
 <p><label for='id_mass_action'>{% trans "With Selected Tickets:" %}</label> <select name='action' id='id_mass_action'><option value='take'>{% trans "Take (Assign to me)" %}</option><option value='delete'>{% trans "Delete" %}</option><optgroup label='{% trans "Close" %}'><option value='close'>{% trans "Close (Don't Send E-Mail)" %}</option><option value='close_public'>{% trans "Close (Send E-Mail)" %}</option></optgroup><optgroup label='{% trans "Assign To" %}'><option value='unassign'>{% trans "Nobody (Unassign)" %}</option>{% for u in user_choices %}<option value='assign_{{ u.id }}'>{{ u.username }}</option>{% endfor %}</optgroup></select> <input type='submit' value='Go' /></p>
 {% csrf_token %}</form>
-{% endblock %}
+{% endblock helpdesk_body %}
 </div>

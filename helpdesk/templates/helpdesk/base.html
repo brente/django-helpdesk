@@ -26,7 +26,7 @@
         .goog-te-banner-frame {display: none !important;}
         .goog-te-balloon-frame {display: none !important;}
         /* hide google translate tooltips (generated for every translated item) */
-        .goog-tooltip {display: none !important; } 
+        .goog-tooltip {display: none !important; }
         </style>
 
         <style type="text/css">
@@ -43,18 +43,17 @@
         #dropdown li.headerlink:hover ul { display: block; width: auto; }
         #dropdown li.headerlink:hover ul li { padding: 5px; margin: 1px; float: none; display: block; }
         </style>
-
-        {% block helpdesk_head %}{% endblock %}
+        {% block helpdesk_head %}{% endblock helpdesk_head %}
     </head>
     <body id="helpdesk-body">
         <div id='container' class="container">
             <div id='header' class="row">
-                <h1>{% block h1_title %}{% trans "Helpdesk" %}{% endblock %}</h1>
                 {% include "helpdesk/navigation.html" %}
             </div>
 
             <div id='body' class="row">
-                {% block helpdesk_body %}{% endblock %}
+                {% block helpdesk_pagetitle %}<h1>{% trans "Helpdesk" %}</h1>{% endblock helpdesk_pagetitle %}
+                {% block helpdesk_body %}{% endblock helpdesk_body %}
             </div>
 
             <div id='footer' class="row">

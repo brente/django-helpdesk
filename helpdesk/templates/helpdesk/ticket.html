@@ -40,7 +40,7 @@
 </script>
 {% endblock %}
 
-{% block h1_title %}{{ ticket.ticket_for_url }}{% endblock %}
+{% block helpdesk_pagetitle %}<h1>{{ ticket.ticket_for_url }}</h1>{% endblock helpdesk_pagetitle %}
 
 {% block helpdesk_body %}
 {% if helpdesk_settings.HELPDESK_TRANSLATE_TICKET_COMMENTS %}
@@ -210,4 +210,4 @@ function googleTranslateElementInit() {
 
 </div>
 
-{% endblock %}
+{% endblock helpdesk_body %}
