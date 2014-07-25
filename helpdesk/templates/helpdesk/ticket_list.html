@@ -1,36 +1,7 @@
 {% extends "helpdesk/base.html" %}{% load i18n humanize %}{% load url from future %}
 {% block helpdesk_title %}{% trans "Tickets" %}{% endblock %}
 {% block helpdesk_head %}
-
 <script type='text/javascript' language='javascript' src='{{ STATIC_URL }}helpdesk/filter.js'></script>
-
-<script type='text/javascript' language='javascript'>
-$(document).ready(function() {
-
-    // Enable Tabs
-    $("#searchtabs").tabs({
-        collapsible:true
-    });
-    // Hide all tabs by default
-    $("#searchtabs > ul > li").removeClass().addClass("ui-corner-top ui-state-default");
-    $("#searchtabs > div").addClass("ui-tabs-hide");
-
-    $("#select_all").click(function() {
-        $(".ticket_multi_select").attr('checked', true);
-        return false;
-    });
-    $("#select_none").click(function() {
-        $(".ticket_multi_select").attr('checked', false);
-        return false;
-    });
-    $("#select_inverse").click(function() {
-        $(".ticket_multi_select").each(function() {
-            $(this).attr('checked', !$(this).attr('checked'));
-        });
-        return false;
-    });
-});
-</script>
 {% endblock helpdesk_head %}
 
 {% block helpdesk_pagetitle %}<h1>Tickets {% if from_saved_query %} [{{ saved_query.title }}]{% endif %}</h1>{% endblock helpdesk_pagetitle %}
