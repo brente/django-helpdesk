@@ -7,6 +7,7 @@
 
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
         <link rel='stylesheet' href='{{ STATIC_URL }}helpdesk/helpdesk-extend.css' type='text/css'  media="screen" >
+{% block helpdesk_css %}{% endblock helpdesk_css %}
         <link rel='alternate' href='{% url 'helpdesk_rss_user' user.username %}' type='application/rss+xml' title='{% trans "My Open Tickets" %}' />
         <link rel='alternate' href='{% url 'helpdesk_rss_activity' %}' type='application/rss+xml' title='{% trans "All Recent Activity" %}' />
         <link rel='alternate' href='{% url 'helpdesk_rss_unassigned' %}' type='application/rss+xml' title='{% trans "Unassigned Tickets" %}' />
@@ -58,6 +59,7 @@
         </div>
         {% include "helpdesk/debug.html" %}
     </body>
+{% block helpdesk_tail %}{% endblock helpdesk_tail %}
 </html>
 {% endwith %}
 {% endwith %}
