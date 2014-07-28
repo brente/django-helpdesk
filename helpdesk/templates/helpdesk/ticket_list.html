@@ -4,10 +4,8 @@
 <script type='text/javascript' language='javascript' src='{{ STATIC_URL }}helpdesk/filter.js'></script>
 {% endblock helpdesk_head %}
 
-{% block helpdesk_pagetitle %}<h1>Tickets {% if from_saved_query %} [{{ saved_query.title }}]{% endif %}</h1>{% endblock helpdesk_pagetitle %}
-
 {% block helpdesk_body %}{% load in_list %}
-
+<h1>Tickets {% if from_saved_query %} [{{ saved_query.title }}]{% endif %}</h1>
 <div id="searchtabs" class="row">
     {% comment %}<ul>
     <li><a href='#tabfilter'>{% trans "Query Options" %}</a></li>
