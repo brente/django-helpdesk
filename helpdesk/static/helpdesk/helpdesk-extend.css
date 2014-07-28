@@ -52,6 +52,8 @@ Add your custom styles here
 .navbar-brand {font-weight: bold; font-size: 2em; padding: 0 0.5em; line-height: 50px}
 img.brand {padding-right: 30px;}
 
+ul.ticket-ops {margin: 0}
+
 @media (min-width: 1400px) {
   #searchform .input {width: 240px}
 }
