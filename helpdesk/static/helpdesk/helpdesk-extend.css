@@ -40,19 +40,27 @@ table.ticket-stats tbody th, table.ticket-stats tbody tr {padding-left: 20px}
 #helpdesk-nav-collapse #searchform {padding-top: 0;}
 #ticket-description {background-color: #FCF8E3;}
 .followup.well {background-color: #f4f5ff;}
-/*
-Add your custom styles here
-*/
+
+/* Add your custom styles here */
 #footer {
     border-top: 2px solid #aaa;
     margin-top: 20px;
     padding: 10px 0;
 }
 #helpdesk-body {padding-top: 100px;}
-.navbar-brand {font-weight: bold; font-size: 2em; padding: 0 0.5em; line-height: 50px}
+.navbar-brand {font-weight: bold; font-size: 2em; padding: 0 0.5em; line-height: 50px;}
 img.brand {padding-right: 30px;}
 
 ul.ticket-ops {margin: 0}
+
+/* header */
+#dropdown li.headerlink {width: auto; float: left; text-align: center;}
+
+/* query list */
+#dropdown li.headerlink ul {display: none; text-align: left; position: absolute; padding: 5px; z-index: 2;}
+/* query entries */
+#dropdown li.headerlink:hover ul {display: block; width: auto;}
+#dropdown li.headerlink:hover ul li {padding: 5px; margin: 1px; float: none; display: block;}
 
 @media (min-width: 1400px) {
   #searchform .input {width: 240px}
