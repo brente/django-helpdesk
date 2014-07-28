@@ -1,6 +1,11 @@
 {% load i18n humanize %}{% load url from future %}
+<div class="panel panel-default">
+{% if ticket_list_caption %}
+    <div class="panel-heading">
+        <h3 class="panel-title">{% trans "Unassigned Tickets" %} {% trans "(pick up a ticket if you start to work on it)" %}<span class="badge pull-right">{{ unassigned_tickets|length }}</span></h3>
+    </div>
+{% endif %}
     <table class="table table-hover table-bordered table-striped">
-        <caption>{% trans "Unassigned Tickets" %} {% trans "(pick up a ticket if you start to work on it)" %}</caption>
         <thead>
             <tr><th>#</th><th>{% trans "Pr" %}</th><th>{% trans "Title" %}</th><th>{% trans "Queue" %}</th><th>{% trans "Created" %}</th><th>&nbsp;</th></tr>
         </thead>
@@ -24,3 +29,4 @@
 {% endfor %}
         </tbody>
     </table>
+</div>
