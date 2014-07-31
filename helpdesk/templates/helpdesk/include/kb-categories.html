@@ -4,7 +4,7 @@
     </div>
     <div class="list-group kb-cat">
 {% for category in kb_categories %}
-        <a href='{{ category.get_absolute_url }}' class="list-group-item">{{ category.title }} <small>{{ category.description }}</small></a>
+        <a href='{{ category.get_absolute_url }}' class="list-group-item">{{ category.title }} <span class="badge">{{ category.kbitem_set.count }}</span><small>{{ category.description }}</small></a>
 {% empty %}
         <div class="list-group-item list-group-item-warning">{% trans "Sorry, no knowledge base categories have been defined yet" %}</div>
 {% endfor %}
