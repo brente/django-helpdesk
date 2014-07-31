@@ -1,28 +1,33 @@
 {% extends "helpdesk/base.html" %}{% load i18n %}
 
-{% block helpdesk_title %}{% trans "Reports &amp; Statistics" %}{% endblock %}
+{% block helpdesk_title %}{% trans "Reports &amp; Statistics" %}: {{ title }}{% endblock %}
 
 {% block helpdesk_css %}
         <link rel='stylesheet' typ='text/css' href='{{ STATIC_URL }}helpdesk/jquery.jqplot/jquery.jqplot.min.css' />
 {% endblock helpdesk_css %}
 
 {% block helpdesk_body %}
-<h2>{% trans "Reports &amp; Statistics" %}</h2>
+<h2>{% trans "Reports &amp; Statistics" %}: {{ title }}</h2>
 
 {% if user_saved_queries_ %}
-    <p>{% trans "You can run this query on filtered data by using one of your saved queries." %}</p>
-    <form role="form" method='GET' action='./'>
-        <div class="form-group">
-            <label for='saved_query'>{% trans "Select Query:" %}</label>
-            <select name='saved_query'>
-                <option value="">--------</option>{% for q in user_saved_queries_ %}
-                <option value="{{ q.id }}"{% ifequal saved_query q %} selected{% endifequal %}>{{ q.title }}</option>{% endfor %}
-            </select>
-            <input class="btn btn-primary" type='submit' value='{% trans "Filter Report" %}'>
-        </div>
-    </form>
+    <div class="well">
+        <p>{% trans "You can run this query on filtered data by using one of your saved queries." %}</p>
+        <form class='form-inline' role='form' method='GET' action='./'>
+            <div class='form-group'>
+                <label for='saved_query' class='sr-only'>{% trans "Select Query:" %}</label>
+                <select class='form-control' name='saved_query'>
+                    <option value="">--------</option>{% for q in user_saved_queries_ %}
+                    <option value="{{ q.id }}"{% ifequal saved_query q %} selected{% endifequal %}>{{ q.title }}</option>{% endfor %}
+                </select>
+            </div>
+            <button class='btn btn-primary' type='submit'>{% trans "Filter Report" %}</button>
+        </form>
+    </div>
 {% else %}
-    <p>{% trans "Want to filter this report to just show a subset of data? Go to the Ticket List, filter your query, and save your query." %}</p>
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">{% trans "Close" %}"</span></button>
+        {% trans "Want to filter this report to just show a subset of data? Go to the Ticket List, filter your query, and save your query." %}
+    </div>
 {% endif %}
 
 <table class="table table-hover table-bordered">

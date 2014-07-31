@@ -4,10 +4,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{% trans "Close" %}</span></button>
-                        <h4 class="modal-title" id="debug-modal-label">{% trans "Queries" %}</h4>
+                        <h4 class="modal-title" id="debug-modal-label">{% blocktrans count query_count=sql_queries|length %}{{ query_count }} Query{% plural %}{{ query_count }} Queries{% endblocktrans %}</h4>
                     </div>
                     <div class="modal-body">
-                        <p>{% blocktrans count query_count=sql_queries|length %}{{ query_count }} Query{% plural %}{{ query_count }} Queries{% endblocktrans %}</p>
                         <table id="debugQueryTable" class="table table-striped">
                             <col width="1"></col>
                             <col></col>
