@@ -8,35 +8,61 @@
 
 {% block helpdesk_body %}
 <div class="page-header">
-    <h1>Tickets{% if from_saved_query %} <small>[{{ saved_query.title }}]</small>{% endif %}</h1>
+    <h1>Tickets{% if from_saved_query %} <small>{{ saved_query.title }}</small>{% endif %}</h1>
 </div>
 
 {% include "helpdesk/include/ticket-filter.html" %}
 
-<div class="row">
 {{ search_message|safe }}
+
     <form method='post' action='{% url 'helpdesk_mass_update' %}' id="ticket_mass_update">
         {% csrf_token %}
 {% include "helpdesk/include/ticket-list.html" %}
-        <div class="pagination">
-            <span class="step-links">
-                {% if tickets.has_previous %}
-                    <a href="?{% if query_string %}{{ query_string }}&amp;{% endif %}page={{ tickets.previous_page_number }}">{% trans "Previous" %}</a>
-                {% endif %}
-
-                <span class="current">
-                    {% blocktrans with tickets.number as ticket_num and tickets.paginator.num_pages as num_pages %}Page {{ ticket_num }} of {{ num_pages }}.{% endblocktrans %}
-                </span>
-
-                {% if tickets.has_next %}
-                    <a href="?{% if query_string %}{{ query_string }}&amp;{% endif %}page={{ tickets.next_page_number }}">{% trans "Next" %}</a>
-                {% endif %}
-            </span>
+{% with num_pages=tickets.paginator.num_pages %}
+        <ul class="pagination">
+{% if tickets.has_previous %}
+            <li><a href="?{% if query_string %}{{ query_string }}&amp;{% endif %}page={{ tickets.previous_page_number }}" title="{% trans "Previous" %}">&laquo;</a></li>{% if tickets.previous_page_number != 1 %}
+            <li><a href="?{% if query_string %}{{ query_string }}&amp;{% endif %}page=1">1</a></li>{% endif %}{% if tickets.previous_page_number > 2 %}
+            <li class="disabled"><a href="#">&hellip;</a></li>{% endif %}
+            <li><a href="?{% if query_string %}{{ query_string }}&amp;{% endif %}page={{ tickets.previous_page_number }}">{{ tickets.previous_page_number }}</a></li>
+{% else %}
+            <li class="disabled"><span title="{% trans "Previous" %}">&laquo;</span></li>
+{% endif %}
+            <li class="disabled"><a href="#" title="{% blocktrans with tickets.number as ticket_num %}Page {{ ticket_num }} of {{ num_pages }}.{% endblocktrans %}">{{ tickets.number }}</a></li>
+{% if tickets.has_next %}{% if tickets.next_page_number != num_pages %}
+            <li><a href="?{% if query_string %}{{ query_string }}&amp;{% endif %}page={{ tickets.next_page_number }}">{{ tickets.next_page_number }}</a></li>{% if tickets.next_page_number|add:1 < num_pages %}
+            <li class="disabled"><a href="#">&hellip;</a></li>{% endif %}{% endif %}
+            <li><a href="?{% if query_string %}{{ query_string }}&amp;{% endif %}page={{ num_pages }}">{{ num_pages }}</a></li>
+            <li><a href="?{% if query_string %}{{ query_string }}&amp;{% endif %}page={{ tickets.next_page_number }}" title="{% trans "Next" %}">&raquo;</a></li>
+{% else %}
+            <li class="disabled"><span title="{% trans "Next" %}">&raquo;</span></li>
+{% endif %}
+        </ul>
+{% endwith %}
+<style>.ticket-mass-actions .control-label,.ticket-mass-actions .form-control, .ticket-mass-actions .btn {display: inline-block;width: auto}.ticket-selection{margin-bottom:0.5em}</style>
+        <div class="row">
+            <div class="col-md-5 ticket-selection">
+                <label>{% trans "Select:" %}</label>
+                <a class="btn btn-default btn-sm" href='#select_all' id='select_all'>{% trans "All" %}</a>
+                <a class="btn btn-default btn-sm" href='#select_none' id='select_none'>{% trans "None" %}</a>
+                <a class="btn btn-default btn-sm" href='#select_inverse' id='select_inverse'>{% trans "Inverse" %}</a>
+            </div>
+            <div class="col-md-7 ticket-mass-actions">
+                <label class="control-label hidden-xs" for='id_mass_action'>{% trans "With Selected Tickets:" %}</label>
+                <select class="form-control" name='action' id='id_mass_action'>
+                    <option value='take'>{% trans "Take (Assign to me)" %}</option>
+                    <option value='delete'>{% trans "Delete" %}</option>
+                    <optgroup label='{% trans "Close" %}'>
+                        <option value='close'>{% trans "Close (Don't Send E-Mail)" %}</option>
+                        <option value='close_public'>{% trans "Close (Send E-Mail)" %}</option>
+                    </optgroup>
+                    <optgroup label='{% trans "Assign To" %}'>
+                        <option value='unassign'>{% trans "Nobody (Unassign)" %}</option>{% for u in user_choices %}
+                        <option value='assign_{{ u.id }}'>{{ u.username }}</option>{% endfor %}
+                    </optgroup>
+                </select>
+                <button class="btn btn-default" type='submit'>{% trans "Go" %}</button>
+            </div>
         </div>
-
-        <p><label>{% trans "Select:" %}</label> <a href='#select_all' id='select_all'>{% trans "All" %}</a> <a href='#select_none' id='select_none'>{% trans "None" %}</a> <a href='#select_inverse' id='select_inverse'>{% trans "Inverse" %}</a></p>
-
-        <p><label for='id_mass_action'>{% trans "With Selected Tickets:" %}</label> <select name='action' id='id_mass_action'><option value='take'>{% trans "Take (Assign to me)" %}</option><option value='delete'>{% trans "Delete" %}</option><optgroup label='{% trans "Close" %}'><option value='close'>{% trans "Close (Don't Send E-Mail)" %}</option><option value='close_public'>{% trans "Close (Send E-Mail)" %}</option></optgroup><optgroup label='{% trans "Assign To" %}'><option value='unassign'>{% trans "Nobody (Unassign)" %}</option>{% for u in user_choices %}<option value='assign_{{ u.id }}'>{{ u.username }}</option>{% endfor %}</optgroup></select> <input type='submit' value='Go' /></p>
     </form>
 {% endblock helpdesk_body %}
-</div>

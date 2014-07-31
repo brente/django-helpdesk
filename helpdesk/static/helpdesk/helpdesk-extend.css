@@ -58,6 +58,9 @@ ul.ticket-ops {margin: 0}
 .kb-articles .last-update {text-align: right; font-size: 0.8em}
 .kb-feedback .results {margin-bottom: 0}
 
+.ticket-mass-actions .control-label,.ticket-mass-actions .form-control, .ticket-mass-actions .btn {display: inline-block; width: auto}
+.ticket-selection {margin-bottom: 0.5em}
+
 /* header */
 #dropdown li.headerlink {width: auto; float: left; text-align: center;}
 

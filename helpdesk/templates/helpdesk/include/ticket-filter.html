@@ -1,4 +1,4 @@
-<div id="searchtabs" class="row">{% load i18n in_list %}{% load url from future %}
+<div id="searchtabs">{% load i18n in_list %}{% load url from future %}
     {% comment %}<ul>
     <li><a href='#tabfilter'>{% trans "Query Options" %}</a></li>
     {% if not from_saved_query %}
@@ -90,12 +90,12 @@
 
                         <hr style='clear: both;' />
 
-                        <input class="btn btn-primary" type='submit' value='{% trans "Apply Filter" %}' />
+                        <button class="btn btn-primary" type='submit'>{% trans "Apply Filter" %}</button>
 {% if from_saved_query %}
 {% if saved_query.user == user %}
                         <p>{% blocktrans with saved_query.title as query_name %}You are currently viewing saved query <strong>"{{ query_name }}"</strong>.{% endblocktrans %} <a href='{% url 'helpdesk_delete_query' saved_query.id %}'>{% trans "Delete Saved Query" %}</a></p>
 {% endif %}
-                        <p>{% blocktrans with saved_query.id as query_id %}<a href='../reports/?saved_query={{ query_id }}'>Run a report</a> on this query to see stats and charts for the data listed below.{% endblocktrans %}</p>
+                        <p>{% url 'helpdesk_report_index' as hd_report_index_url %}{% blocktrans with saved_query.id as query_id %}<a href='{{ hd_report_index_url }}?saved_query={{ query_id }}'>Run a report</a> on this query to see stats and charts for the data listed below.{% endblocktrans %}</p>
 {% endif %}
                     </form>
                 </div>
@@ -111,19 +111,20 @@
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <form method='post' action='{% url 'helpdesk_savequery' %}'>
+                    <form role="form" method='post' action='{% url 'helpdesk_savequery' %}'>
                         {% csrf_token %}
                         <input type='hidden' name='query_encoded' value='{{ urlsafe_query }}' />
-                        <dl>
-                            <dt><label for='id_title'>{% trans "Query Name" %}</label></dt>
-                            <dd><input type='text' name='title' id='id_title' /></dd>
-                            <dd class='form_help_text'>{% trans "This name appears in the drop-down list of saved queries. If you share your query, other users will see this name, so choose something clear and descriptive!" %}</dd>
-
-                            <dt><label for='id_shared'>{% trans "Shared?" %}</label></dt>
-                            <dd><input type='checkbox' name='shared' id='id_shared' /> {% trans "Yes, share this query with other users." %}</dd>
-                            <dd class='form_help_text'>{% trans "If you share this query, it will be visible by <em>all</em> other logged-in users." %}</dd>
-
-                        </dl>
+                        <div class="form-group">
+                            <label class="control-label" for='id_title'>{% trans "Query Name" %}</label>
+                            <input class="form-control" type='text' name='title' id='id_title' />
+                            <span class='help-block'>{% trans "This name appears in the drop-down list of saved queries. If you share your query, other users will see this name, so choose something clear and descriptive!" %}</span>
+                        </div>
+                        <div class="checkbox">
+                            <label for='id_shared'>
+                                <input type='checkbox' name='shared' id='id_shared' /> {% trans "Yes, share this query with other users." %}
+                            </label>
+                            <span class='help-block'>{% trans "If you share this query, it will be visible by <em>all</em> other logged-in users." %}</span>
+                        </div>
 
                         <div class='buttons'>
                             <input class="btn btn-primary" type='submit' value='{% trans "Save Query" %}'>
