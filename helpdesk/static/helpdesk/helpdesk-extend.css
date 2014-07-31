@@ -17,8 +17,18 @@ Bootstrap overrides
     display: block;
 }
 
+.filterBox {
+    width: 18%;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.filterBox .panel-heading, .filterBox .panel-body {padding: 5px}
+
+.filterBox .panel-heading .help-block {font-size:0.8em; margin-bottom: 0}
+
 .filterBox label {
-    clear: both;
     display: block;
 }
 
@@ -26,6 +36,13 @@ Bootstrap overrides
     color: #aaa;
     font-size: 0.8em;
     clear: both;
+}
+
+.filterBuilderRemove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent
 }
 
 .row_tablehead, table.table caption {background-color: #dbd5d9;}
