@@ -24,6 +24,6 @@
 
 {% block helpdesk_content %}
 {% with user_saved_queries_=user|saved_queries %}
-{{ super.block }}
+{{ block.super }}
 {% endwith %}
 {% endblock helpdesk_content %}
