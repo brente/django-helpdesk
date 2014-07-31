@@ -3,30 +3,21 @@ Bootstrap overrides
 */
 #helpdesk-body {padding-top: 110px;}
 
-.thumbnail.filterBox {
-    display: none;
-    float: left;
-    border: solid #ccc 1px;
-    padding: 10px;
-    margin: 4px;
+.filterBox {
+    width: 18%;
     max-width: 24%;
+    display: none;
+    position: relative;
+    vertical-align: top;
+    margin: 4px;
     min-height: 200px;
 }
 
-.thumbnail.filterBoxShow {
-    display: block;
-}
-
-.filterBox {
-    width: 18%;
-    display: inline-block;
-    position: relative;
-    vertical-align: top;
-}
+.filterBoxShow {display: inline-block;}
 
 .filterBox .panel-heading, .filterBox .panel-body {padding: 5px}
 
-.filterBox .panel-heading .help-block {font-size:0.8em; margin-bottom: 0}
+.filterBox .panel-heading .help-block {font-size: 0.8em; margin-bottom: 0}
 
 .filterBox label {
     display: block;
