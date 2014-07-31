@@ -1,7 +1,7 @@
 /*
 Bootstrap overrides
 */
-
+#helpdesk-body {padding-top: 50px;}
 .thumbnail.filterBox {
     display: none;
     float: left;
@@ -35,8 +35,7 @@ table.ticket-stats tbody th, table.ticket-stats tbody tr {padding-left: 20px}
 table.helpdesk-summary thead th, table.helpdesk-summary tbody td {text-align: center}
 table.helpdesk-summary tr > th:first-child {text-align: left}
 
-.errorlist {list-style: none;}
-.errorlist {padding: 0;}
+.errorlist {list-style: none; padding: 0;}
 .has-error .input-group input, .has-error .input-group select, .has-error .input-group textarea {border-color: #b94a48}
 
 #helpdesk-nav-collapse #searchform {padding-top: 0;}
@@ -49,12 +48,16 @@ table.helpdesk-summary tr > th:first-child {text-align: left}
     margin-top: 20px;
     padding: 10px 0;
 }
-#helpdesk-body {padding-top: 100px;}
 .navbar-brand {font-weight: bold; font-size: 2em; padding: 0 0.5em; line-height: 50px;}
 img.brand {padding-right: 30px;}
 
 ul.ticket-ops {margin: 0}
-.kb-cat a small {display: block}
+.page-header h1 small, .kb-cat a small {display: block; padding-top: 0.2em}
+.kb-articles .list-group-item .rating {float: right}
+.kb-articles .list-group-item h3 {margin: 0 0 0.2em}
+.kb-articles .list-group-item p {margin-bottom: 0}
+.kb-articles .last-update {text-align: right; font-size: 0.8em}
+.kb-feedback .results {margin-bottom: 0}
 
 /* header */
 #dropdown li.headerlink {width: auto; float: left; text-align: center;}
