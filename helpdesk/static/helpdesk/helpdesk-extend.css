@@ -54,6 +54,7 @@ table.helpdesk-summary tr > th:first-child {text-align: left}
 img.brand {padding-right: 30px;}
 
 ul.ticket-ops {margin: 0}
+.kb-cat a small {display: block}
 
 /* header */
 #dropdown li.headerlink {width: auto; float: left; text-align: center;}
