@@ -1,10 +1,12 @@
 {% extends "helpdesk/base.html" %}{% load i18n humanize %}{% load url from future %}
+
 {% block helpdesk_title %}{% trans "Tickets" %}{% endblock %}
+
 {% block helpdesk_head %}
 <script type='text/javascript' language='javascript' src='{{ STATIC_URL }}helpdesk/filter.js'></script>
 {% endblock helpdesk_head %}
 
-{% block helpdesk_body %}{% load in_list %}
+{% block helpdesk_body %}
 <h1>Tickets {% if from_saved_query %} [{{ saved_query.title }}]{% endif %}</h1>
 
 {% include "helpdesk/include/ticket-filter.html" %}
