@@ -1,29 +1,36 @@
 <!DOCTYPE html>{% load i18n load_helpdesk_settings %}{% load url from future %}
 {% with request|load_helpdesk_settings as helpdesk_settings %}
 <html>
-<head>
-<title>{% block helpdesk_title %}{% trans "Helpdesk" %}{% endblock %}</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-<link rel='stylesheet' href='{{ STATIC_URL }}helpdesk/helpdesk-extend.css' type='text/css' />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-{% block helpdesk_head %}{% endblock %}
-</head>
-<body id="helpdesk-body">
-<div id='container' class="container">
-    <div id='header' class="row">
-        <!-- Put your logo here if necessary: -->
-        <!-- <img class="brand pull-right" src="/media/logo.png"> -->
-        <h1>{% trans "Helpdesk" %}</h1>
-        {% include "helpdesk/navigation.html" %}
-    </div>
-    <div id='body' class="row">
-{% block helpdesk_body %}{% endblock %}
-    </div>
-    <div id='footer' class="row">
-        <p>{% include "helpdesk/attribution.html" %}</p>
-    </div>
-</div>{% include "helpdesk/debug.html" %}
-</body>
+    <head>
+        <title>{% block helpdesk_title %}{% trans "Helpdesk" %}{% endblock %}</title>
+{% block helpdesk_extra_head %}{% endblock helpdesk_extra_head %}
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link rel='stylesheet' href='{{ STATIC_URL }}helpdesk/helpdesk-extend.css' type='text/css' />
+{% block helpdesk_css %}{% endblock helpdesk_css %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+{% block helpdesk_head %}{% endblock helpdesk_head %}
+    </head>
+    <body id="helpdesk-body">
+{% block helpdesk_content %}
+        <div id='container' class="container">
+            <div id='header' class="row">
+{% include "helpdesk/navigation.html" %}
+            </div>
+
+            <div id='body' class="row">
+{% block helpdesk_body %}{% endblock helpdesk_body %}
+            </div>
+
+            <div id='footer' class="row">
+                <div class="col-md-2">{% include "helpdesk/attribution.html" %}</div>
+{% block helpdesk_footer %}{% endblock helpdesk_footer %}
+                {% if debug %}<div class="col-md-2 pull-right"><a href="#debug-modal" data-toggle="modal">{% trans "Queries" %}</a></div>{% endif %}
+            </div>
+        </div>
+{% include "helpdesk/debug.html" %}
+{% endblock helpdesk_content %}
+    </body>
+{% block helpdesk_tail %}{% endblock helpdesk_tail %}
 </html>
 {% endwith %}
