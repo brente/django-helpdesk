@@ -1,7 +1,8 @@
 /*
 Bootstrap overrides
 */
-#helpdesk-body {padding-top: 50px;}
+#helpdesk-body {padding-top: 110px;}
+
 .thumbnail.filterBox {
     display: none;
     float: left;
@@ -27,8 +28,6 @@ Bootstrap overrides
     clear: both;
 }
 
-#searchtabs {margin-bottom: 20px;}
-
 .row_tablehead, table.table caption {background-color: #dbd5d9;}
 table.table caption {height: 2em; line-height: 2em; font-weight: bold;}
 table.ticket-stats tbody th, table.ticket-stats tbody tr {padding-left: 20px}
@@ -38,7 +37,7 @@ table.helpdesk-summary tr > th:first-child {text-align: left}
 .errorlist {list-style: none; padding: 0;}
 .has-error .input-group input, .has-error .input-group select, .has-error .input-group textarea {border-color: #b94a48}
 
-#helpdesk-nav-collapse #searchform {padding-top: 0;}
+#searchform {padding-top: 0}
 #ticket-description {background-color: #FCF8E3;}
 .followup.well {background-color: #f4f5ff;}
 
@@ -68,6 +67,13 @@ ul.ticket-ops {margin: 0}
 #dropdown li.headerlink:hover ul {display: block; width: auto;}
 #dropdown li.headerlink:hover ul li {padding: 5px; margin: 1px; float: none; display: block;}
 
-@media (min-width: 1400px) {
-  #searchform .input {width: 240px}
+@media (max-width: 1199px) {
+    #helpdesk-nav-collapse .navbar-nav li {text-align: center}
+    #helpdesk-nav-collapse .navbar-nav li a {padding-top: 4px; padding-bottom: 4px}
+    #helpdesk-nav-collapse .navbar-nav li .glyphicon {font-size:1.5em}
+    #helpdesk-nav-collapse .navbar-nav li .nav-text {display: block; font-size: 0.75em}
+}
+@media (min-width: 1200px) {
+    #helpdesk-body {padding-top: 55px;}
+    /*#searchform .input {width: 240px}*/
 }
