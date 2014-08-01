@@ -1,0 +1,28 @@
+    <script type='text/javascript'>
+        $.jqplot.config.enablePlugins = true;
+        var dataset = [];
+
+        {% for d in data %}
+        dataset[{{ forloop.counter0 }}] = [{% for f in d %}{% if not forloop.first %}{{ f }}{% if not forloop.last %}, {% endif %}{% endif %}{% endfor %}];{% endfor %}
+
+        plot = $.jqplot('placeholder', dataset, {
+            legend: {show: true, location: 'nw', xoffset: 55},
+            title: "{{ title }}",
+            seriesDefaults: {
+                renderer: $.jqplot.BarRenderer,
+                rendererOptions: {barPadding: 8, barMargin: 20}
+                },
+            series: [{% for d in data %}
+                {label:'{{ d.0 }}'}{% if not forloop.last %},{% endif %}{% endfor %}
+                ],
+            axes: {
+                xaxis: {
+                    renderer: $.jqplot.CategoryAxisRenderer,
+                    ticks: [{% for h in headings %}{% if not forloop.first %}'{{ h }}'{% if not forloop.last %}, {% endif %}{% endif %}{% endfor %}]
+                },
+                yaxis: {
+                    min: 0
+                }
+            }
+        });
+    </script>

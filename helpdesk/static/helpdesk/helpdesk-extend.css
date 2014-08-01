@@ -1,23 +1,25 @@
 /*
 Bootstrap overrides
 */
+#helpdesk-body {padding-top: 110px;}
 
-.thumbnail.filterBox {
-    display: none;
-    float: left;
-    border: solid #ccc 1px;
-    padding: 10px;
-    margin: 4px;
+.filterBox {
+    width: 18%;
     max-width: 24%;
+    display: none;
+    position: relative;
+    vertical-align: top;
+    margin: 4px;
     min-height: 200px;
 }
 
-.thumbnail.filterBoxShow {
-    display: block;
-}
+.filterBoxShow {display: inline-block;}
+
+.filterBox .panel-heading, .filterBox .panel-body {padding: 5px}
+
+.filterBox .panel-heading .help-block {font-size: 0.8em; margin-bottom: 0}
 
 .filterBox label {
-    clear: both;
     display: block;
 }
 
@@ -27,29 +29,62 @@ Bootstrap overrides
     clear: both;
 }
 
-#searchtabs {margin-bottom: 20px;}
+.filterBuilderRemove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent
+}
 
 .row_tablehead, table.table caption {background-color: #dbd5d9;}
 table.table caption {height: 2em; line-height: 2em; font-weight: bold;}
-table.ticket-stats caption {color: #fbff00; font-style: italic;}
 table.ticket-stats tbody th, table.ticket-stats tbody tr {padding-left: 20px}
+table.helpdesk-summary thead th, table.helpdesk-summary tbody td {text-align: center}
+table.helpdesk-summary tr > th:first-child {text-align: left}
 
-.errorlist {list-style: none;}
-.errorlist {padding: 0;}
+.errorlist {list-style: none; padding: 0;}
 .has-error .input-group input, .has-error .input-group select, .has-error .input-group textarea {border-color: #b94a48}
 
-#helpdesk-nav-collapse #searchform {
-    padding-top: 0;
-}
+#searchform {padding-top: 0}
 #ticket-description {background-color: #FCF8E3;}
 .followup.well {background-color: #f4f5ff;}
-/*
-Add your custom styles here
-*/
+
+/* Add your custom styles here */
 #footer {
-    border-top: 2px solid #AAAAAA;
+    border-top: 2px solid #aaa;
     margin-top: 20px;
     padding: 10px 0;
 }
-#helpdesk-body {padding-top: 100px;}
+.navbar-brand {font-weight: bold; font-size: 2em; padding: 0 0.5em; line-height: 50px;}
 img.brand {padding-right: 30px;}
+
+ul.ticket-ops {margin: 0}
+.page-header h1 small, .kb-cat a small {display: block; padding-top: 0.2em}
+.kb-articles .list-group-item .rating {float: right}
+.kb-articles .list-group-item h3 {margin: 0 0 0.2em}
+.kb-articles .list-group-item p {margin-bottom: 0}
+.kb-articles .last-update {text-align: right; font-size: 0.8em}
+.kb-feedback .results {margin-bottom: 0}
+
+.ticket-mass-actions .control-label,.ticket-mass-actions .form-control, .ticket-mass-actions .btn {display: inline-block; width: auto}
+.ticket-selection {margin-bottom: 0.5em}
+
+/* header */
+#dropdown li.headerlink {width: auto; float: left; text-align: center;}
+
+/* query list */
+#dropdown li.headerlink ul {display: none; text-align: left; position: absolute; padding: 5px; z-index: 2;}
+/* query entries */
+#dropdown li.headerlink:hover ul {display: block; width: auto;}
+#dropdown li.headerlink:hover ul li {padding: 5px; margin: 1px; float: none; display: block;}
+
+@media (max-width: 1199px) {
+    #helpdesk-nav-collapse .navbar-nav li {text-align: center}
+    #helpdesk-nav-collapse .navbar-nav li a {padding-top: 4px; padding-bottom: 4px}
+    #helpdesk-nav-collapse .navbar-nav li .glyphicon {font-size:1.5em}
+    #helpdesk-nav-collapse .navbar-nav li .nav-text {display: block; font-size: 0.75em}
+}
+@media (min-width: 1200px) {
+    #helpdesk-body {padding-top: 55px;}
+    /*#searchform .input {width: 240px}*/
+}

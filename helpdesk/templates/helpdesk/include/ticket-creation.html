@@ -1,0 +1,15 @@
+<div class="panel panel-default" name='submit'>{% load i18n bootstrap %}
+    <div class="panel-heading">
+        <h3 class="panel-title">{% trans "Submit a Ticket" %}</h3>
+    </div>
+    <div class="panel-body">
+        <p>{% trans "All fields are required." %} {% trans "Please provide as descriptive a title and description as possible." %}</p>
+        <form role="form" method='post' action='./#submit' enctype='multipart/form-data'>
+            {% csrf_token %}
+            <fieldset>
+                {{ form|bootstrap }}
+            </fieldset>
+            <button type='submit' class="btn btn-primary">{% trans "Submit Ticket" %}</button>
+        </form>
+    </div>
+</div>
